@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h2>SBI Bank Services</h2>
+
+  <div class="mb-3">
+    <label for="citySelect" class="form-label">Select City</label>
+    <select class="form-select" id="citySelect" [(ngModel)]="selectedCity" (change)="onCityChange()">
+      <option value="">Select a city</option>
+      <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+    </select>
+  </div>
+
+  <div class="mb-3" *ngIf="bankList.length > 0">
+    <label for="bankSelect" class="form-label">Select Bank in {{ selectedCity }}</label>
+    <select class="form-select" id="bankSelect" [(ngModel)]="selectedBank" (change)="onBankSelect(selectedBank)">
+      <option value="">Select a bank</option>
+      <option *ngFor="let bank of bankList" [value]="bank.name">{{ bank.name }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="waitingTime">
+    <h4 class="text-success">Waiting Time for {{ selectedBank }}: {{ waitingTime }}</h4>
+  </div>
+</div>
