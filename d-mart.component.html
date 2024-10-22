@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <!-- City selection dropdown -->
+  <div class="form-group">
+    <label for="citySelect">Select City</label>
+    <select id="citySelect" class="form-control" [(ngModel)]="selectedCity" (change)="onCityChange()">
+      <option value="">Select a city</option>
+
+      <option *ngFor="let city of cityList" [value]="city">{{ city }}</option>
+    </select>
+  </div>
+
+  <!-- Shop selection based on the selected city -->
+  <div *ngIf="selectedCity">
+    <h2 class="mt-4">DMart Shops in {{ selectedCity }}</h2>
+
+    <!-- Shop selection dropdown -->
+    <div class="form-group">
+      <label for="shopSelect">Select Shop</label>
+      <select id="shopSelect" class="form-control" [(ngModel)]="selectedShop" (change)="onShopSelect(selectedShop)">
+        <option value="">Select Shop</option>
+
+        <option *ngFor="let shop of shopList" [value]="shop.name">{{ shop.name }}</option>
+      </select>
+    </div>
+
+    <!-- Display waiting time for the selected shop -->
+    <div *ngIf="waitingTime" class="alert alert-info mt-3">
+      <strong>Waiting time for {{ selectedShop }}:</strong> {{ waitingTime }}
+    </div>
+  </div>
+</div>
